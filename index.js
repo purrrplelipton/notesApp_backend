@@ -39,8 +39,9 @@ app.post("/api/notes", (req, res, nxt) => {
   if (req.body) {
     const note = new Note({
       content: req.body.content,
-      important: req.body.important,
+      important: req.body.important === "important",
       date: new Date(),
+      id: req.body.id,
     });
 
     return note
@@ -49,7 +50,6 @@ app.post("/api/notes", (req, res, nxt) => {
         res.json(savedNote);
       })
       .catch((err) => nxt(err));
-  } else {
   }
   res.status(400).json({
     error: "content missing",
@@ -77,7 +77,7 @@ app.delete("/api/notes/:id", (req, res, nxt) => {
 });
 
 const unknownEndpoint = (req, res) => {
-  response.status(404).send({ error: "unknown endpoint" });
+  res.status(404).send({ error: "unknown endpoint" });
 };
 
 app.use(unknownEndpoint);
@@ -86,9 +86,9 @@ const errorHandler = (err, req, res, nxt) => {
   console.error(err);
 
   if (err.name === "CastError") {
-    response.status(400).send({ error: "malformatted id" });
+    res.status(400).send({ error: "malformatted id" });
   } else if (err.name === "ValidationError") {
-    response.status(400).json({ error: err.message });
+    res.status(400).json({ error: err.message });
   }
 
   nxt(err);

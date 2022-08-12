@@ -15,8 +15,9 @@ const noteShcema = new mongoose.Schema({
     required: true,
     minLength: [5, "note length is too short"],
   },
-  date: { type: Date, required: true },
   important: Boolean,
+  date: { type: Date, required: true },
+  id: { type: Number, required: true },
 });
 
 noteShcema.set("toJSON", {
