@@ -44,6 +44,8 @@ app.post("/api/notes", (req, res, nxt) => {
       id: req.body.id,
     });
 
+    console.log(note);
+
     return note
       .save()
       .then((savedNote) => {
