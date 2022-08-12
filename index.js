@@ -39,9 +39,12 @@ app.post("/api/notes", (req, res, nxt) => {
   if (req.body) {
     const note = new Note({
       content: req.body.content,
-      important: req.body.important,
+      important: req.body.important === "important",
       date: new Date(),
+      id: req.body.id,
     });
+
+    console.log(note);
 
     return note
       .save()
@@ -49,7 +52,6 @@ app.post("/api/notes", (req, res, nxt) => {
         res.json(savedNote);
       })
       .catch((err) => nxt(err));
-  } else {
   }
   res.status(400).json({
     error: "content missing",
@@ -88,7 +90,7 @@ const errorHandler = (err, req, res, nxt) => {
   if (err.name === "CastError") {
     response.status(400).send({ error: "malformatted id" });
   } else if (err.name === "ValidationError") {
-    response.status(400).json({ error: err.message });
+    res.status(400).json({ error: err.message });
   }
 
   nxt(err);
