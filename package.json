@@ -7,27 +7,25 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:ui": "rm -rf build && cd ../notes-app && npm run build && cp -r build ../backend",
-    "deploy": "git push heroku master",
-    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && npm run deploy",
-    "logs:prod": "heroku logs --tail"
+    "build:ui": "rm -rf build && cd ../notesApp_frontend && npm run build:ui",
+    "logs:prod": "heroku logs --tail",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
-    "url": "fsopenbackend"
+    "url": "https://github.com/purrrplelipton/notesApp_backend.git"
   },
   "author": "immanuel toby",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.20.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.17.3",
-    "http-proxy-middleware": "^2.0.6",
-    "mongoose": "^6.5.0",
-    "morgan": "^1.10.0"
+    "mongoose": "^6.5.2"
   },
   "devDependencies": {
+    "eslint": "^8.21.0",
     "nodemon": "^2.0.15"
-  },
-  "proxy": "http://localhost:3001"
+  }
 }
