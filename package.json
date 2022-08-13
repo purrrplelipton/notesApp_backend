@@ -8,9 +8,8 @@
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:ui": "rm -rf build && cd ../notesApp_frontend && npm run build:ui",
-    "push:master": "git add . && git commit -am \"updated UI\" && git push origin master",
-    "push:testing": "git add . && git commit -m \"testing\" && git push origin err_tests",
-    "logs:prod": "heroku logs --tail"
+    "logs:prod": "heroku logs --tail",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -26,6 +25,7 @@
     "mongoose": "^6.5.2"
   },
   "devDependencies": {
+    "eslint": "^8.21.0",
     "nodemon": "^2.0.15"
   }
 }
