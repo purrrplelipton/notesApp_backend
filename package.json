@@ -8,7 +8,6 @@
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:ui": "rm -rf build && cd ../notesApp_frontend && npm run build:ui",
-    "logs:prod": "heroku logs --tail",
     "lint": "eslint ."
   },
   "repository": {
