@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 if (process.argv.length < 3) {
-  console.log("give password as an argument");
+  console.log('give password as an argument');
   process.exit(1);
 }
 
@@ -11,7 +11,7 @@ const url = `mongodb+srv://toby:${password}@cluster0.bm9qe.mongodb.net/noteApp?r
 
 mongoose.connect(url, { useNewUrlParser: true });
 
-const Note = mongoose.model("Note", {
+const Note = mongoose.model('Note', {
   content: { type: String, required: true, min: 5 },
   date: { type: Date, required: true },
   important: Boolean,
@@ -20,12 +20,12 @@ const Note = mongoose.model("Note", {
 const note = new Note({
   content: process.argv[3],
   date: new Date(),
-  important: process.argv[4] === "true",
+  important: process.argv[4] === 'true',
 });
 
 if (process.argv.length === 5) {
   note.save().then(() => {
-    console.log("note saved successfully");
+    console.log('note saved successfully');
     mongoose.connection.close();
   });
 } else if (process.argv.length === 3) {
@@ -34,5 +34,5 @@ if (process.argv.length === 5) {
     mongoose.connection.close();
   });
 } else {
-  console.log("something went wrong");
+  console.log('something went wrong');
 }

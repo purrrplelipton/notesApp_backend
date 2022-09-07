@@ -1,5 +1,7 @@
-const info = (...args) => console.log(...args);
+const info = (...args) =>
+  process.env.NODE_ENV === 'test' ? null : console.log(...args)
 
-const error = (...args) => console.error(...args);
+const error = (...args) =>
+  process.env.NODE_ENV === 'test' ? null : console.error(...args)
 
-module.exports = { info, error };
+module.exports = { info, error }
